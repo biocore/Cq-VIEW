@@ -1,0 +1,13 @@
+name: wastewater
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3
+  - pandas
+  - openpyxl
+  - pyyaml
+  - matplotlib
+  - gh
+prefix: /Applications/miniconda3/envs/wastewater

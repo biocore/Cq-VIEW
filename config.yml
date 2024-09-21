@@ -1,0 +1,119 @@
+"protocol_name": "Promega N1/N2 assay on Pro machine"
+"analysis_settings":
+  "curve_model": pooled  # options: single, pooled, mixed
+  "normalization_model": fixed  # options: spikein, rolling, fixed
+  "fixed_norm_factors":
+    "PL": 5000000000
+    "ENC": 2000000000
+    "SB": 2000000000
+    "default": 5000000000  # TODO: verify
+  "rolling_norm_divisors":
+    "PL": 50
+    "ENC": 50
+    "SB": 100
+  "min_passing_reps": 1
+  "min_cq_conf": 0.7
+  "sample_context_fold_change_threshold": 2.5
+  "sample_base_context_fold_change_threshold": 2
+  "sample_base_context_days_window": 2
+  "sample_base_context_days_threshold": 5
+  "control_days_for_rolling_avg": 7
+  "min_control_days_for_rolling_avg": 1
+
+"standard_curves":
+  "PMMoV_N1":
+    "curve_name": "2023-02-15_15-25-02_1_curves"
+    "slope": -3.500070
+    "intercept": 36.417650
+    "use_ln": False
+    "reaction_vol_per_l": 1000000
+  "Promega_N1":
+    "curve_name": "2023-02-15_15-25-02_1_curves"
+    "slope": -3.619770
+    "intercept": 34.714000
+    "use_ln": False
+    "reaction_vol_per_l": 1000000
+
+"spikein_curves":
+  "NA":
+    "NA": "NA"
+
+"input_files":
+  "exclude_fname_pattern": "*_exclude.yml"
+  "filename_pattern": "*_Results_*.*"
+  "sheet_name": "Results"
+  "date_created_key": "Analysis Date/Time"
+  "metadata_separator": ": "
+  "rows_to_skip": 24
+  "well_key": "Well Position"
+  "sample_key": "Sample"
+  "target_key": "Target"
+  "raw_cq_key": "Cq"
+  "confidence_key": "Cq Confidence"
+  "null_value": "Undetermined"
+  "assays":
+    - "assay_name": "Promega_SARS-CoV-2_N1"
+      "targets":
+        - "target_name": "Promega_N1"
+          "ladder_prefix":
+            - "Ladder_per_uL_"
+        - "target_name": "PMMoV_N1"
+          "is_fecal_control": true
+          "ladder_prefix":
+            - "Ladder_per_uL_"
+    - "assay_name": "Promega_SARS-CoV-2_N2"
+      "targets":
+        - "target_name": "Promega_N2"
+          "ladder_prefix":
+            - "Ladder_per_uL_"
+        - "target_name": "PMMoV_N2"
+          "is_fecal_control": true
+          "ladder_prefix":
+            - "Ladder_per_uL_"
+    - "assay_name": "Monkeypox"
+      "targets":
+        - "target_name": "MPX"
+  "control_prefixes":
+    - "neg"
+    - "pos"
+    - "control"
+  "ladders":
+    "ladder_bottom": 0.004
+    "ladder_steps": 8
+    "intercept_ladder_step": 3
+    "regression_bottom_step": 3
+
+"site_groups":
+    - "site_group": "sandiego"
+      "site_prefixes":
+        - "PL"
+        - "ENC"
+        - "SB"
+      "do_context_qc": true
+      "site_locations":
+        "PL": "PointLoma"
+        "ENC": "Encina"
+        "SB": "SouthBay"
+      "filename_pattern": "{}_sewage_qPCR.csv"
+    - "site_group": "ucsd"
+      "site_prefixes":
+        - "AS"
+        - "ECEC"
+        - "THN"
+      "do_context_qc": false
+    - "site_group": "ucsf"
+      "site_prefixes":
+        - "SEP"
+        - "OSP"
+        - "SFO"
+      "do_context_qc": false
+    - "site_group": "usd"
+      "site_prefixes":
+        - "USD"
+      "do_context_qc": false
+
+"output_files":
+  "norm_conc_key": "Mean viral gene copies/L"
+  "collection_date_key": "Sample_Date"
+  output_assay:
+    "assay_name": "Promega_SARS-CoV-2_N1"
